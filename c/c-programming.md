@@ -54,3 +54,82 @@ int main(void) {
     return 0;
 }
 ```
+
+## const使用常见错误总结
+
+**error: assignment of read-only variable**
+
+```
+#include <stdio.h>
+
+int main(void) {
+    const int aint = 7;
+    aint = 2;
+
+    return 0;
+}
+```
+
+const data-type *pointer-name
+
+*pointer-name = new-value // error: assignment of read-only location
+
+pointer-name = &new-variable
+
+```
+#include <stdio.h>
+
+int main(void) {
+    int alist[7] = {1, 2, 3};
+    int blist[7] = {4, 5};
+
+    const int *aptr = alist;
+    printf("%%p = %p\n", aptr);
+    aptr = blist; // YES
+    printf("%%p = %p\n", aptr);
+
+    int i = 0;
+    for(; i < 7; i++) {
+        printf("%i ", *(aptr + i));
+    }
+    printf("\n");
+/*
+    *aptr = 6; // error: assignment of read-only location
+*/
+    return 0;
+}
+```
+
+data-type *const pointer-name
+
+*pointer-name = new-value
+
+pointer-name = &new-variable // error: assignment of read-only variable
+
+```
+#include <stdio.h>
+
+int main(void) {
+    int alist[7] = {1, 2, 3};
+    int blist[7] = {4, 5};
+
+    int *const aptr = alist;
+    *(aptr + 6) = 7;
+
+    int i = 0;
+    for(; i < 7; i++) {
+        printf("%i ", *(aptr + i));
+    }
+    printf("\n");
+/*
+    aptr = blist; // error: assignment of read-only variable
+*/
+    return 0;
+}
+```
+
+const data-type *const pointer-name
+
+*pointer-name = new-value // error
+
+pointer-name = &new-variable // error
