@@ -150,7 +150,7 @@ pointer-name = &new-variable // error
 
 * 只能初始化一次 [即在首次调用进行初始化]；
 
-* 只能使用常量或常量表达式进行初始化 [如不指定，其默认值为0]；
+* 只能使用常量或常量表达式进行初始化 [如不指定，其默认值为0]； // error: initializer element is not constant
 
 * 每次函数调用后，其值会被保留到下一次函数调用。
 
