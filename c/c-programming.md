@@ -133,3 +133,51 @@ const data-type *const pointer-name
 *pointer-name = new-value // error
 
 pointer-name = &new-variable // error
+
+## 函数内部auto与static类型局部变量对比
+
+```auto```类型局部变量使用说明：
+
+* 无需显式声明 [函数局部变量默认类型]；
+
+* 每次函数调用时都会重新创建 [重新初始化]；
+
+* 无默认的初始值。
+
+```static```类型局部变量使用说明：
+
+* 需要显式声明；
+
+* 只能初始化一次 [即在首次调用进行初始化]；
+
+* 只能使用常量或常量表达式进行初始化 [如不指定，其默认值为0]；
+
+* 每次函数调用后，其值会被保留到下一次函数调用。
+
+```
+#include <stdio.h>
+
+int comp_auto_vs_static() {
+    auto int ai = 0;
+    static int si = 1;
+    static int si2;
+    si2 = 7;
+
+    printf("%i vs. %i vs. %i ", ai, si, si2);
+    ai += 1;
+    si += 1;
+    si2 += 1;
+
+    return si;
+}
+
+int main(void) {
+    int i = 0, out = 0;
+    for(; i < 7; i++) {
+        out = comp_auto_vs_static();
+        printf("vs. %i\n", out);
+    }
+
+    return 0;
+}
+```
