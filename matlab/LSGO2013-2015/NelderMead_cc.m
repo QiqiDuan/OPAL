@@ -1,7 +1,7 @@
 function [opt_fp, opt_fv, run_time, num_fe, fv_seq, in_seq] = ...
     NelderMead_cc(fhd, fun_ind, fp, num_fe, max_fe, interval_fe)
 % *********************************************************************** %
-% NELDERMEAD with the Convergence Curve data.
+% NelderMead with Convergence Curve data [i.e. NelderMead_cc].
 %
 % -----------------
 % || INPUT  || <---
