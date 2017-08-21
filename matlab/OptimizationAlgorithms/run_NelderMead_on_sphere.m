@@ -20,7 +20,7 @@ for i = 1 : length(fun_dim_list)
     for trial_ind = 1 : num_trials
         fun_dim = fun_dim_list(i);
         ini_seed = 20170821 + fun_dim + trial_ind;
-        fp = slb + rand(RandStream('mt19937ar', 'Seed', ini_seed), fun_dim + 1, fun_dim) * (sub - slb);
+        fp = slb + rand(RandStream('mt19937ar', 'Seed', ini_seed), fun_dim, fun_dim + 1)' * (sub - slb);
         [opt_fp, opt_fv_sum(trial_ind, i), ~, num_fe_sum(trial_ind, i)] = NelderMead(fhd, fun_ind, fp, 0, max_fe);
         fprintf('fun_dim = %05d :: opt_fp = %09.2e || num_fe = %07d [%+11.2e ... %+11.2e]\n', ...
             fun_dim, opt_fv_sum(trial_ind, i), num_fe_sum(trial_ind, i), opt_fp(1, 1), opt_fp(1, end));
