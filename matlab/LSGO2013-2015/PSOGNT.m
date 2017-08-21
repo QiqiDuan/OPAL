@@ -1,7 +1,7 @@
 function [opt_fp, opt_fv, run_time, num_fe] = ...
     PSOGNT(fhd, fun_ind, fun_dim, slb, sub, pop_size, num_fe, max_fe, rsip)
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
-% Particle Swarm Optimizer With a Global Neighbor Topology [i.e. PSO_GNT].
+% Particle Swarm Optimizer With a Global Neighbor Topology [i.e. PSOGNT].
 %
 % -----------------
 % || INPUT  || <---
