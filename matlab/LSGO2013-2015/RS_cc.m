@@ -1,7 +1,7 @@
 function [opt_fp, opt_fv, run_time, num_fe, fv_seq, in_seq] = ...
     RS_cc(fhd, fun_ind, fun_dim, slb, sub, pop_size, num_fe, max_fe, rsip, interval_fe)
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
-% Random Search with the Convergence Curve data [i.e. RS].
+% RS with Convergence Curve data [i.e. RS_cc].
 %
 % -----------------
 % || INPUT  || <---
