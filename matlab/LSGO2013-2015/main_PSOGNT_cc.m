@@ -1,5 +1,5 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
-% Run Script for *PSO_GNT_cc.m* on CEC2013-2015 LSGO Benchmark Functions.
+% Run Script for *PSOGNT_cc.m* on CEC2013-2015 LSGO Benchmark Functions.
 %
 % ----------
 % Reference:
