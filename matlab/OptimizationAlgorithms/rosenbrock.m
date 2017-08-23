@@ -1,6 +1,0 @@
-function [y, fun_ind] = rosenbrock(x, fun_ind)
-    [~, fun_dim] = size(x);
-    y = (100 * sum((x(:, 1 : (fun_dim - 1)) .^ 2 ...
-        - x(:, 2 : fun_dim)) .^ 2, 2) ...
-        + sum((x(:, 1 : (fun_dim - 1)) - 1) .^ 2, 2))';
-end
