@@ -18,6 +18,9 @@ function do_trials(algo_name, fun_name, fun_dim_list, pop_size_list)
 %
 %   >> do_trials('SWRS', 'sphere', [2 10 100 1000], [1 1 1 1]);
 %   >> do_trials('SWRS', 'rosenbrock', [2 10 100 1000], [1 1 1 1]);
+%
+%   >> do_trials('PSOGNT', 'sphere', [2 10 100 1000], [10 20 30 50]);
+%   >> do_trials('PSOGNT', 'rosenbrock', [2 10 100 1000], [10 20 30 50]);
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
     num_trials = 3;
     opt_fv_sum = Inf * ones(num_trials, length(fun_dim_list));
