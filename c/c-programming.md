@@ -36,7 +36,7 @@ int main(void) {
     long long int allint = 7L; // uppercase
     printf("long long int :: %%lli = %lli\n", allint);
 
-    float afloat = 2.57f;
+    float afloat = 2.57F;
     // %e ---> mantissa + exponent
     printf("float :: %%f = %f || %%e = %e\n", afloat, afloat);
     printf("float :: %%g = %g\n", afloat);
@@ -47,9 +47,9 @@ int main(void) {
     printf("double :: %%lf = %lf || %%le = %le\n", adouble, adouble);
     printf("double :: %%lg = %g\n", adouble);
 
-    long double aldouble = 2.57;
+    long double aldouble = 2.57L;
     printf("long double :: %%Lf = %Lf || %%Le = %Le\n", aldouble, aldouble);
-    printf("long long double :: %%Lg = %Lg\n", aldouble);
+    printf("long double :: %%Lg = %Lg\n", aldouble);
 
     return 0;
 }
