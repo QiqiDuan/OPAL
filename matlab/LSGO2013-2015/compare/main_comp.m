@@ -1,10 +1,11 @@
 function main_comp(algo_list)
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
 % Main program for comparing different optimization algorithms based on the
-%   following three performance metrics:
-%       1. median run_time,
+%   following four performance metrics:
+%       1. total run_time,
 %       2. median opt_fv [the Wilcoxon rank-sum test],
-%       3. median num_fe.
+%       3. convergence curve [mean opt_fv],
+%       4. median num_fe.
 %
 % -----------------
 % || INPUT  || <---
@@ -14,11 +15,12 @@ function main_comp(algo_list)
 % --------
 % Example:
 % --------
-%   >> main_comp({'RS' 'RS_cc'}); % 78.94 vs. 78.52
-%   >> main_comp({'NelderMead' 'NelderMead_cc'}); % 115.91 vs. 115.82
-%   >> main_comp({'PSOGNT' 'PSOGNT_cc'}); % 95.33 vs. 84.83
-%   >> main_comp({'SWRS' 'SWRS_cc'}); % 385.80 vs. 473.79
+%   >> main_comp({'RS', 'RS_cc'}); % 78.94 vs. 78.52
+%   >> main_comp({'NelderMead', 'NelderMead_cc'}); % 115.91 vs. 115.82
+%   >> main_comp({'PSOGNT', 'PSOGNT_cc'}); % 95.33 vs. 84.83 [*]
+%   >> main_comp({'SWRS', 'SWRS_cc'}); % 385.80 vs. 473.79 [*]
 %   >> main_comp({'RS', 'NelderMead', 'PSOGNT', 'SWRS'});
+%   >> main_comp({'RS_cc', 'NelderMead_cc', 'PSOGNT_cc', 'SWRS_cc'});
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
     warning('off','all');
     
@@ -32,13 +34,13 @@ function main_comp(algo_list)
     x_axis = 1 : num_funs;
     num_trials = 25;
     max_fe = 3 * (10 ^ 6);
-    
+     
     comp_results = [mfilename '_' datestr(now,'yyyy-mm-dd_HH-MM-SS')];
     if ~exist(comp_results, 'dir')
         mkdir(comp_results);
     end
     
-    %% plot median run_time
+    %% plot Total run_time
     fig_ind = 100;
     figure(fig_ind);
     fig_title = sprintf('Total Run Time');
@@ -134,6 +136,26 @@ function main_comp(algo_list)
             fprintf(sprintf('Total number of significantly equal  for %s : %02d\n', algo_list{1, base_ind}, sum(ind_sigf_equal == 0)));
             fprintf(sprintf('Total number of significantly worse  for %s : %02d\n', algo_list{1, base_ind}, sum(ind_sgnf_worse)));
         end
+    end
+    
+    %% plot convergence curve
+    if strcmp(algo_list{1, 1}(1, end - 1 : end), 'cc')
+        fig_ind = 300;
+        figure(fig_ind);
+        for fun_ind = 1 : num_funs
+            subplot(3, 5, fun_ind);
+            for algo_ind = 1 : length(algo_list)
+                load(sprintf('../%s/Fun%02d_Dim%02d.mat', opt_results{1, algo_ind}, fun_ind, 1000), 'in_seq', 'fv_seq');
+                plot(mean(in_seq, 1), mean(fv_seq, 1));
+                title(sprintf('F%02d', fun_ind));
+                set(gca, 'YScale', 'log');
+                if fun_ind == 1
+                    legend(fig_legends);
+                end
+                hold on;
+            end
+        end
+        saveas(fig_ind, ['./' comp_results '/Convergence Curve.fig']);
     end
     
     %% median num_fe
