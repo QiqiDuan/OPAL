@@ -14,6 +14,10 @@ function main_comp(algo_list)
 % --------
 % Example:
 % --------
+%   >> main_comp({'RS' 'RS_cc'}); % 78.94 vs. 78.52
+%   >> main_comp({'NelderMead' 'NelderMead_cc'}); % 115.91 vs. 115.82
+%   >> main_comp({'PSOGNT' 'PSOGNT_cc'}); % 95.33 vs. 84.83
+%   >> main_comp({'SWRS' 'SWRS_cc'}); % 385.80 vs. 473.79
 %   >> main_comp({'RS', 'NelderMead', 'PSOGNT', 'SWRS'});
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
     warning('off','all');
@@ -62,7 +66,7 @@ function main_comp(algo_list)
     for algo_ind = 1 : length(algo_list)
         subplot(length(algo_list), 1, algo_ind);
         boxplot(run_time_sum(:, :, algo_ind));
-        title(algo_list(1, algo_ind));
+        title(strrep(algo_list{1, algo_ind}, '_', '\_'));
         if algo_ind == length(algo_list)
             xlabel('Function Index');
         end
@@ -101,7 +105,7 @@ function main_comp(algo_list)
     for algo_ind = 1 : length(algo_list)
         subplot(length(algo_list), 1, algo_ind);
         boxplot(opt_fv_sum(:, :, algo_ind));
-        title(algo_list(1, algo_ind));
+        title(strrep(algo_list{1, algo_ind}, '_', '\_'));
         if algo_ind == length(algo_list)
             xlabel('Function Index');
         end
