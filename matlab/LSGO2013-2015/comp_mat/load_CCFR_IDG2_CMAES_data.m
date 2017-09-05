@@ -1,6 +1,6 @@
 function CCFR_IDG2_CMAES = load_CCFR_IDG2_CMAES_data()
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
-% Load CCFR_IDG2_CMAES data n CEC2013-2015 LSGO Benchmark Functions.
+% Load CCFR_IDG2_CMAES data on CEC2013-2015 LSGO Benchmark Functions.
 %
 % ----------
 % Reference:
