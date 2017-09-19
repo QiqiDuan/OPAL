@@ -29,7 +29,7 @@ OpenJDK 64-Bit Server VM (build 25.131-b12, mixed mode)
 # sudo yum -y remove java*
 
 获取ORACLE公司提供的JAVA JDK软件版本：jdk-8u131-linux-x64.rpm。
-注：以上的JAVA JDK软件版本会不断地进行更新，选择最新版即可。
+注：以上的JAVA JDK软件版本会不断地进行更新，选择最新版即可：
 # sudo yum install wget
 # wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" 
   http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm?
@@ -49,7 +49,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 25.131-b11, mixed mode)
 # ls -l /etc/alternatives/java
 # ls -l /usr/java/jdk1.8.0_131/jre/bin/java
 
-如存在多个JAVA JDK软件版本，可能需要进行选择、配置。
+如存在多个JAVA JDK软件版本，可能需要进行选择、配置：
 # sudo alternatives --config java
 
 特别注意：/usr/java/jdk1.8.0_131/bin/java与/usr/java/jdk1.8.0_131/jre/bin/java之间的区别，具体解释见参考资料。
@@ -259,10 +259,38 @@ Spark配置文件设置：
 # scp ~/sparkdir/standalone/conf/slaves sk@slave-ip:/home/sk/sparkdir/standalone/conf/slaves
 # scp ~/sparkdir/standalone/conf/slaves sk@slave-ip:/home/sk/sparkdir/standalone/conf/slaves
 
-Spark集群开启与关闭
+Spark集群开启与关闭：
 # ./sbin/start-all.sh # 开启所有的计算节点
 # ./bin/spark-shell --master spark://master-ip:7077 # 查看主节点 Web UI，惊喜！
 # ./sbin/stop-all.sh # 关闭所有的计算节点
+```
+
+## 安装sbt开发环境与breeze线性代数包
+
+```sbt```的安装命令，如下所示：
+
+
+```
+# curl https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
+# sudo yum install sbt
+# sbt # 可能耗费较长时间
+```
+
+配置```build.sbt```，导入```breeze```线性代数包：
+
+```
+# vi build.sbt
+libraryDependencies += "org.scalanlp" % "breeze_2.11" % "0.12"
+
+resolvers += "Sonatype Releases" at "https://oss.sonatype.org/content/repositories/releases/"
+
+scalaVersion := "2.11.11"
+```
+
+```
+> console
+scala > import breeze.linalg._
+scala > import breeze.numerics._
 ```
 
 ## 参考资料
@@ -287,10 +315,15 @@ Spark集群开启与关闭
 
 [R语言RPM安装包中科大镜像网站](https://mirrors.ustc.edu.cn/epel/7/x86_64/r/)
 
+[sbt官网](http://www.scala-sbt.org/index.html)
+
+[breeze代码库](https://github.com/scalanlp/breeze)
+
 ## 文档信息
 
 ```
 Authors: Qiqi Duan [11749325@mail.sustc.edu.cn]
          Lijun Sun
 Version: v00.00.000 [2017-09-11 21:30:00]
+         v00.00.001 [2017-09-19 19:30:00]
 ```
