@@ -269,11 +269,11 @@ Spark集群开启与关闭：
 
 ```sbt```的安装命令，如下所示：
 
-
 ```
 # curl https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
 # sudo yum install sbt
-# sbt # 可能耗费较长时间
+# sbt # 可能耗费较长时间；建议先建立sbt项目工作空间sbtProj，再在工作空间中运行此命令
+# sbt sbtVersion
 ```
 
 配置```build.sbt```，导入```breeze```线性代数包：
@@ -326,4 +326,5 @@ Authors: Qiqi Duan [11749325@mail.sustc.edu.cn]
          Lijun Sun
 Version: v00.00.000 [2017-09-11 21:30:00]
          v00.00.001 [2017-09-19 19:30:00]
+         v00.00.002 [2017-09-20 20:00:00]
 ```
