@@ -274,6 +274,7 @@ Spark集群开启与关闭：
 # sudo yum install sbt
 # sbt # 可能耗费较长时间；建议先建立sbt项目工作空间sbtProj，再在工作空间中运行此命令
 # sbt sbtVersion
+[info] 1.0.1
 ```
 
 配置```build.sbt```，导入```breeze```线性代数包：
